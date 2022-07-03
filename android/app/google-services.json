@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "458858721021",
+    "project_id": "jaipurtimes-31487",
+    "storage_bucket": "jaipurtimes-31487.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458858721021:android:14419fc207c64b6af61894",
+        "android_client_info": {
+          "package_name": "com.jaipurtimes.jaipurtimes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "458858721021-enoe31j0need4u42j4vgipu8mj1pviol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9UDm8Ffh43DWbLRW3lRpG6K_Y6GKxcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "458858721021-enoe31j0need4u42j4vgipu8mj1pviol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

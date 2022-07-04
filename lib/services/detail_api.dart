@@ -28,46 +28,43 @@ class DetailAPI {
 
     try {
       Response response, response2;
-      response = await get(Uri.parse(
-          'http://chambalsandesh.com/cs/wp-json/wp/v2/posts/$id'));
+      response = await get(
+          Uri.parse('https://jaipurtimes.org/wp-json/wp/v2/posts/$id'));
 
       if (response.statusCode == 200) {
-
         Map data = jsonDecode(response.body);
 
+        Map m = {};
+        m["id"] = data["id"];
+        m["title"] = data["title"]["rendered"];
+        print("${m["title"]}");
+        m["categories"] = data["categories"];
+        m["content"] = data["content"]["rendered"];
 
+        try {
+          final regexp = RegExp(
+              '(?<=image\" content=\").*(?=\" />\n\t<meta property=\"og:image:wid)');
 
-          Map m = {};
-          m["id"] = data["id"];
-          m["title"] = data["title"]["rendered"];
-          print("${m["title"]}");
-          m["categories"] = data["categories"];
-          m["content"] = data["content"]["rendered"];
+          m['image'] = (regexp.allMatches(data["yoast_head"]).first.group(0));
+        } catch (e) {
+          m["image"] = "null";
+        }
+        try {
+          if (data["excerpt"]["rendered"] != null)
+            m['excerpt'] = data["excerpt"]["rendered"];
+        } catch (e) {
+          m["excerpt"] = "";
+        }
 
-          try {
-            m['image'] = data["yoast_head_json"]["og_image"][0]["url"];
-          } catch (e) {
-            m["image"] = "null";
-          }
-          try {
-            if (data["excerpt"]["rendered"] != null)
-              m['excerpt'] = data["excerpt"]["rendered"];
-          } catch (e) {
-            m["excerpt"] = "";
-          }
+        m["date"] = format(data["date"]);
+        m["link"] = data["guid"]["rendered"];
+        //m["modified_date"] = data[i]["modified"];
 
-          m["date"] = format(data["date"]);
-          m["link"] = data["guid"]["rendered"];
-          //m["modified_date"] = data[i]["modified"];
-
-          try {
-            m['author'] =
-            data["yoast_head_json"]["twitter_misc"]["Written by"];
-          } catch (e) {
-            m["author"] = "Unknown";
-          }
-
-
+        if (AUTHORS[data["author"]] != null) {
+          m['author'] = AUTHORS[data["author"]];
+        } else {
+          m["author"] = "Unknown";
+        }
 
         return m;
       } else {

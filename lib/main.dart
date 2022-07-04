@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     messaging = FirebaseMessaging.instance;
-    print("mes");
+
     messaging.getToken().then((value) {
       print("TOKEN: $value");
     });
@@ -116,7 +116,9 @@ class _MyHomePageState extends State<MyHomePage> {
       actionsIconTheme: IconThemeData(color: Colors.black),
       backgroundColor: Colors.white,
       title: Center(
-        child: Image.asset("assets/Logo.jpg", height: 50),
+        child: Text("Jaipur Times",
+            style: TextStyle(
+                color: Colors.red, fontWeight: FontWeight.bold, fontSize: 25)),
         //Text("Chambal Sandesh", style: TextStyle(color: Colors.black))
       ),
     );
@@ -226,7 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         hint: Text("Rajasthan",
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 16,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.bold)),
                                         disabledHint: Text("Rajasthan"),
                                         //value: index,

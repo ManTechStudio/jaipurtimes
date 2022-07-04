@@ -3,8 +3,8 @@ import 'package:jaipurtimes/bloc/bloc.dart';
 
 String link = "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg";
 Bloc PAGENOBLOC = Bloc();
-Color? buttonColor = Color.fromARGB(255, 95, 212, 247);
-Color? buttonselectColor = Color.fromARGB(255, 4, 136, 197);
+Color? buttonColor = Color.fromARGB(255, 20, 20, 36);
+Color? buttonselectColor = Color.fromARGB(255, 199, 9, 9);
 
 List SECTIONS = [
   "Home",
@@ -20,13 +20,12 @@ List SECTIONS = [
   "Sikar",
   "Tonk",
   "Kota",
-
-
 ];
-Map S1 = {"Alwar": 7,
+Map S1 = {
+  "Alwar": 7,
   "Bharatpur": 23,
- " Bhilwara": 28,
- " Bikaner": 25,
+  " Bhilwara": 28,
+  " Bikaner": 25,
   "Business": 10,
   "Churu": 4,
   "Devotional": 16,
@@ -46,7 +45,17 @@ Map S1 = {"Alwar": 7,
   "Sports": 11,
   "Tips and Tricks": 13,
   "Tonk": 17,
-  "Uncategorized": 1};
+  "Uncategorized": 1
+};
+
+Map AUTHORS = {
+  6: "Bhavika Jain",
+  8: "Khushbu Jain",
+  10: "Mahesh Bhobharia",
+  9: "ManTech Studio",
+  1: "Prateek Sharma",
+  4: "Rameshwar Lal",
+};
 
 List DATA = [
   for (int i = 1; i < 10; i++)

@@ -49,8 +49,9 @@ class API {
           print(m1.toString());
           page = ((m1["count"]) / 10).toInt() + 1;
         }
-
-        for (int i = 0; i < data.length; i++) {
+        int ii = 0;
+        (index == 1) ? ii = 1 : ii = 0;
+        for (int i = ii; i < data.length; i++) {
           Map m = {};
           m["id"] = data[i]["id"];
           m["title"] = data[i]["title"]["rendered"];
@@ -63,7 +64,11 @@ class API {
           // print(regexp.hasMatch(data[i]["yoast_head"]));
           //print(match);
           try {
-            m['image'] = data[i]["yoast_head_json"]["og_image"][0]["url"];
+            final regexp = RegExp(
+                '(?<=image\" content=\").*(?=\" />\n\t<meta property=\"og:image:wid)');
+
+            m['image'] =
+                (regexp.allMatches(data[i]["yoast_head"]).first.group(0));
           } catch (e) {
             m["image"] = "null";
           }
@@ -78,17 +83,15 @@ class API {
           m["link"] = data[i]["guid"]["rendered"];
           //m["modified_date"] = data[i]["modified"];
 
-          try {
-            m['author'] =
-                data[i]["yoast_head_json"]["twitter_misc"]["Written by"];
-          } catch (e) {
+          if (AUTHORS[data[i]["author"]] != null) {
+            m['author'] = AUTHORS[data[i]["author"]];
+          } else {
             m["author"] = "Unknown";
           }
           l.add(m);
         }
-        final regexp = RegExp(r'(?<=content=).*');
-        print(regexp.hasMatch(data[1]["yoast_head"]));
-        debugPrint(data[1]["yoast_head"]);
+
+        //debugPrint(data[1]["yoast_head"]);
         return {"list": l, "pages": page, "cpage": cpage};
       } else {
         print(response.reasonPhrase);
